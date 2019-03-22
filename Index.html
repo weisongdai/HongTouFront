@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <title>红头</title>
+</head>
+<body>
+    <!-- 头部信息 -->
+    <div class="ht-header">
+        <div class="ht-home" id="ht-home"><i class="layui-icon ht-home-i" style="font-size:22px;font-weight: 100">&#xe68e;</i> </div>
+        <ul class="ht-home-right">
+            <li></li>
+            <li></li>
+            <li style="width:100px;">
+                    <div class="ht-home-name">
+                            戴伟松
+                         </div>
+            </li>
+            <li style="width:60px;">
+                    <div class="ht-home-avatar"></div>
+                <div id="ht-avatar-detial">
+                    <dl>
+                        <a href="#"><li>个人信息</li></a>
+                        <a href="#"><li>修改密码</li></a>
+                        <a href="#"><li>退出</li></a>
+                    </dl>
+                </div>
+            </li>
+        </ul>
+    </div>
+   <div style="width:400px;height:800px;background-color:red">
+       dadasdasda
+   </div>
+</body>
+<script src="layui/layui.js"></script>
+<script>   
+    layui.use(['layer'],()=>{
+        var layer = layui.layer,
+        $=layui.jquery;
+
+        $('#ht-home').on('click',()=>{
+            layer.open({
+                type: 2,
+                title: false,
+                skin:'layer-open-ws',
+                closeBtn: 0, //不显示关闭按钮
+                shade: [0],
+                area: ['1000px', '400px'],
+                offset: ['50px', '0px'],
+                //time: 2000, //2秒后自动关闭
+                anim: 1,
+                shadeClose:true,
+                resize:true,
+                content: ['menu.html', 'no'], //iframe的url，no代表不显示滚动条
+                end: function(){ //此处用于演示
+                    
+                }
+            });
+        });
+
+
+        var avatarShow = null;
+        $('.ht-home-avatar,.ht-home-avatar').mouseenter(()=>{
+            avatarShow = setTimeout(()=>{
+                $('#ht-avatar-detial')
+                    .show(50)
+                    .animate({
+                        top:-20
+                    },100);
+            },200);
+        }).mouseleave(()=>{
+            clearInterval(avatarShow);
+        })
+
+        $(document).click(function(e){ 
+            e = window.event || e; // 兼容IE7
+            obj = $(e.srcElement || e.target);
+            if ($(obj).is(".ht-home-avatar,#ht-avatar-detial>dl li")) { 
+                
+            } else {
+                $('#ht-avatar-detial')
+                    .hide()
+                    .animate({
+                        top:20
+                    },100)
+                    
+            } 
+        });
+                        
+    });
+</script>
+</html>
